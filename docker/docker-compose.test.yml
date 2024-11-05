@@ -1,0 +1,27 @@
+#testing
+
+version: '3.8'
+services:
+  test-mongodb:
+    image: mongo
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo_data_test:/data/db
+
+  test-backend:
+    build:
+      context: ../backend 
+    ports:
+      - "3201:80"  
+
+  test-frontend:
+    build:
+      context: ../frontend/Practice_Angular  
+    ports:
+      - "4201:4200"  
+    volumes:
+      - ./frontend/Practice_Angular:/app  
+
+volumes:
+  mongo_data_test:
